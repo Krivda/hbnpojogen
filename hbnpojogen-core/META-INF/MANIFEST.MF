@@ -8,4 +8,6 @@ Main-Class: com.github.wwadge.hbnpojogen.HbnPojoGen
 Export-Package: com.github.wwadge.hbnpojogen,
  com.github.wwadge.hbnpojogen.db,
  com.github.wwadge.hbnpojogen.obj
+Import-Package: com.google.common.collect,
+ com.google.common.base
 

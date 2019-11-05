@@ -6,8 +6,8 @@ package ${packagename};
 ## expand Sets using some type eg HashSet, ArrayList, etc
 #if ( $property.oneToMany)
    #set ($fullType =  "Set<$property.JavaType>")
-   #set ($fullJDType = "Set&lt;$property.JavaType&gt;") 
-#else 
+   #set ($fullJDType = "Set&lt;$property.JavaType&gt;")
+#else
 #if ( $property.manyToMany )
 	#set ($fullType =  "Set<$property.manyToManyLink.dstProperty.clazz.className>")
 	#set ($fullJDType =  "Set&lt;$property.manyToManyLink.dstProperty.clazz.className&gt;")
@@ -16,7 +16,7 @@ package ${packagename};
    #set ($fullJDType =  "$property.JavaType")
 #end
 #end
-#end 
+#end
 #macro(lazyManyToMany)
 #if ($property.isManyToManyLazyEnabledByConfig())LAZY#{else}EAGER#end
 #end
@@ -59,7 +59,7 @@ package ${packagename};
 #if ( $property.isGeneratedValueSequence() )
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "$property.sequenceHibernateRef")
 #end
-#end	
+#end
 #if ( $property.OneToMany && !$property.isOneToNForwardLinkDisabled() && (!( $class.embeddable || $class.isCompositePrimaryKey() )))
 #oneToManyAnnotation($property)
 #end
@@ -79,7 +79,7 @@ package ${packagename};
 	@Type(type = "enumType", parameters = {@Parameter(name = "enumClass", value = "${this.getEnumPackagePath($class)}.${fullType}")})
 #else
 	@Enumerated(EnumType.STRING)
-#end	
+#end
 #end
 #end
 #macro(prefix)
@@ -130,7 +130,7 @@ package ${packagename};
 	@JoinColumns({
 #foreach ($join in ${property.getManyToOneKey().keyLinks.entrySet()})
 		@JoinColumn(name = "$join.getKey()", referencedColumnName = "$join.getValue()" )#if ($velocityCount < ${property.getManyToOneKey().keyLinks.size()}),#end
-		
+
 #end
 	})
 #end
@@ -138,7 +138,7 @@ package ${packagename};
 #macro(OneToOneAnnotation $property)
 #if ($property.isOneTooneInverseSide())
 #if ($property.isToOneCascadeEnabledByConfig())
-	@org.hibernate.annotations.Cascade($property.getCascadeTypeOneToOne()) 
+	@org.hibernate.annotations.Cascade($property.getCascadeTypeOneToOne())
 #end
 	@OneToOne( fetch = FetchType.#lazyOneToOne(), #if ($property.isOneToOneCascadeEnabledByConfig())cascade = CascadeType.ALL, #{end}mappedBy = "${property.getOneToOneLink().getPropertyName()}" )
 #else
@@ -150,7 +150,7 @@ package ${packagename};
 #foreach( $property in $class.propertiesForConstructor )
 #set( $value = $($velocityCount % 3) )
 #if ( ($value == 1) && ($velocityCount != 1) )
-					
+
 			### some tabs
 #end
 $property.JavaType $property.propertyName#if ($velocityCount < $class.propertiesForConstructor.size()), #end
@@ -167,13 +167,13 @@ $classAnnotation
 @org.hibernate.annotations.Immutable
 #end
 #end
-#if ( $class.subclass ) 
+#if ( $class.subclass )
 @PrimaryKeyJoinColumn(name = "$class.extendingProperty.fieldObj.name")
 #end
-#if ( $class.superclass ) 
+#if ( $class.superclass )
 @Inheritance(strategy = InheritanceType.JOINED)
 #end
- @Data @EqualsAndHashCode(callSuper=true$class.excludesFromEquals()) $class.lombokToStringCalculate()
+ @Data @EqualsAndHashCode($class.excludesFromEquals()) $class.lombokToStringCalculate()
 #if ( (${class.isEmbeddable()} == false) && ((${this.isDifferentCase($class)} == true) || (${this.hasUnderscores($class)} == true) || ( (${this.isSchemaRestricted()} == true)  )))
 @Table(name = "$class.tableObj.dbName"#if(!$restrictCatalog), catalog = "$class.tableObj.dbCat", schema = "$class.tableObj.dbSchema"#end)
 #end
@@ -229,7 +229,7 @@ import lombok.*;
 #set ($fullTypeOfId = "---")
 
 #doClassMacros()
-#set ($implements =  "$interfacesToShow") 
+#set ($implements =  "$interfacesToShow")
 public #doClassType()class $class.className$this.doExtends($class) implements $implements {
 
 	/** Serial Version UID. */
@@ -276,10 +276,10 @@ $classCustomCodeFields
 #else
 #if ( $property.ManyToMany )
 	private Set<$property.manyToManyLink.dstProperty.clazz.className> ${property.nicePropertyName} = new HashSet<>();
-#else	
+#else
 #if	( $property.idField )
-#if ( $class.embeddable || $class.isCompositePrimaryKey() ) 
-	@Id 
+#if ( $class.embeddable || $class.isCompositePrimaryKey() )
+	@Id
 #end
 #set ($fullTypeOfId =  "$property.JavaType")
 #end
@@ -296,7 +296,7 @@ $classCustomCodeFields
 	private $property.JavaType $property.propertyName;
 
 #else
-##### The bug we're talking about below is: 
+##### The bug we're talking about below is:
 ##### See http://opensource.atlassian.com/projects/hibernate/browse/HHH-2326?page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#action_25739
 #if ( ! $property.isManyToMany() )
 	private $property.javaType $property.propertyName#if ( $property.idField && $property.fieldObj.autoInc && $property.composite) = $this.getHibernateBugWorkaround($property); // init for hibernate bug workaround#{else};#end
@@ -312,7 +312,7 @@ $classCustomCodeFields
 ##
 #if ($fullTypeOfId != "---")
 #end
- 
+
 
 #if($class.subclass && $isSubtypeGenerationEnabled)
 	/**
@@ -324,7 +324,7 @@ $classCustomCodeFields
  	@Override
  	public ${class.extendsFrom.clazz.className}SubclassType get${class.extendsFrom.clazz.className}SubclassType() {
 		return ${class.extendsFrom.clazz.className}SubclassType.$this.convertCamelCaseToEnum(${class.className});
- 	}  
+ 	}
 #end
 
 #if($class.superclass && $isSubtypeGenerationEnabled)
@@ -336,9 +336,9 @@ $classCustomCodeFields
  	@Transient
  	public ${class.className}SubclassType get${class.className}SubclassType() {
 		return ${class.className}SubclassType.NOT_A_CHILD;
- 	}  
+ 	}
  #end
- 
+
 #foreach( $property in $properties )
 #doCalcFullType()
 ## Getters
@@ -359,7 +359,7 @@ $classCustomCodeFields
 		$annotation
 #end
 	}
-#end	
+#end
 ## many-to-many
 #if ( $property.ManyToMany )
 	/**
@@ -369,7 +369,7 @@ $classCustomCodeFields
 	  * Equivalent to ${property.nicePropertyName}.add($property.propertyName)
 	  * (bi-directional capability has been disabled via config)
 #end
-	 * 
+	 *
 	 * @param $property.propertyName item to add
 	 */
 	public void add${property.JavaName}(${property.javaType} $property.propertyName) {
@@ -392,21 +392,21 @@ $classCustomCodeFields
 
 ## Join Tables
 #foreach ($joinMap in $class.joinMappings)
-	/** 
+	/**
 	* Utility method to add a ${joinMap.dstProperty.clazz.className} by using the link class table ($joinMap.linkClass.className).
 #if ($joinMap.dstProperty.isOneToNBackLinkDisabled())
-	* This method usually takes care of maintaining the proper bidirectional links, 
-	* but backlinks have been disabled to the target object so full bi-directionality 
+	* This method usually takes care of maintaining the proper bidirectional links,
+	* but backlinks have been disabled to the target object so full bi-directionality
 	* is disabled in this method (but retained for API consistency).
-#end  
+#end
 	* @param ${joinMap.dstProperty.clazz.getClassPropertyName()} ${joinMap.dstProperty.clazz.className} object to add
-	* @return $joinMap.linkClass.className The linker object. 
+	* @return $joinMap.linkClass.className The linker object.
 	*/
 	public $joinMap.linkClass.className add${joinMap.dstProperty.clazz.className}(${joinMap.dstProperty.clazz.className} ${joinMap.dstProperty.clazz.getClassPropertyName()}) {
 		$joinMap.linkClass.className $joinMap.linkClass.getClassPropertyName() = new ${joinMap.linkClass.className}();
 		${joinMap.linkClass.getClassPropertyName()}.set${class.className}(this);
 		${joinMap.linkClass.getClassPropertyName()}.set${joinMap.dstProperty.oneToManyLink.JavaName}($joinMap.dstProperty.clazz.getClassPropertyName());
-		
+
 		this.${joinMap.linkClass.getNiceClassPropertyName()}.add($joinMap.linkClass.getClassPropertyName());
 #if (!$joinMap.dstProperty.isOneToNBackLinkDisabled())
 		${joinMap.dstProperty.clazz.getClassPropertyName()}.get${joinMap.linkClass.niceClassName}().add($joinMap.linkClass.getClassPropertyName());
@@ -417,5 +417,5 @@ $classCustomCodeFields
 #end
 
 $classCustomCode
-	
+
 }

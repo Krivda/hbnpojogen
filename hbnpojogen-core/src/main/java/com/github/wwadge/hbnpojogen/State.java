@@ -17,6 +17,7 @@ import java.util.zip.ZipEntry;
  *
  * @author wallacew
  */
+@SuppressWarnings({"Convert2Diamond", "unused", "JavaDoc"})
 public class State
         implements Serializable {
 
@@ -662,7 +663,7 @@ public class State
      */
     private boolean mavenEnabled = false;
     private boolean mavenPomEnabled = true;
-    private RuleBasedPluralizer customPluralizer;
+    private transient RuleBasedPluralizer customPluralizer;
     private boolean mavenArtifactVersionsDisabled;
     private boolean useLDAP;
     private boolean useLDAPImport;
@@ -880,7 +881,7 @@ public class State
     }
 
     /**
-     * @param filename String - The jar containing the serialization file to be loaded
+     * @param uriResource String - The jar containing the serialization file to be loaded
      * @return State object
      * @throws Exception
      */
@@ -1732,7 +1733,7 @@ public class State
 
 
     /**
-     * @param renameField the renameField to set
+     * @param renameFieldMap the renameField to set
      */
     public final void setRenameFieldMap(
             TreeMap<String, TreeMap<String, String>> renameFieldMap) {
@@ -2416,7 +2417,7 @@ public class State
 
 
     /**
-     * @param transientFields the transientFields to set
+     * @param moneyFields the transientFields to set
      */
     public void setMoneyFields(Set<String> moneyFields) {
         this.moneyFields = moneyFields;
@@ -2617,7 +2618,7 @@ public class State
 
 
     /**
-     * @param boolean1
+     * @param skip
      */
     public void skipModelInterfaces(boolean skip) {
         this.skipModelInterfaces = skip;

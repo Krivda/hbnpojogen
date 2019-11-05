@@ -469,13 +469,13 @@ public class HbnPojoGen {
      */
     public static void main(String[] args) {
 
-        if (args.length < 1) {
+        /*if (args.length < 1) {
             log("This will generate: Source files (1 per table - including the annotations), enums, dao, test cases");
             log("Syntax: hbnSync configfile.xml [target-dir (override)] [ipaddress to use as source (override)] ");
             log("Eg: java -jar hbnSync.jar config.xml /var/tmp 10.0.0.2");
             log("Edit the templates (templates/*) and regenerate if the style is not to your liking");
             System.exit(1);
-        }
+        }*/
 
         System.setProperty("line.separator", "\n");
         String overridePath = null;

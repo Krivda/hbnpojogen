@@ -127,15 +127,15 @@ public class VelocityWriters {
         notForInterfaceImports.add("javax.persistence.InheritanceType");
         notForInterfaceImports.add("javax.persistence.PrimaryKeyJoinColumn");
         notForInterfaceImports.add("java.util.Arrays");
-        notForInterfaceImports.add("org.hibernate.validator.Size");
-        notForInterfaceImports.add("org.hibernate.validator.NotNull");
-        notForInterfaceImports.add("org.hibernate.validator.NotEmpty");
-        notForInterfaceImports.add("org.hibernate.validator.Valid");
+        notForInterfaceImports.add("javax.validation.constraints.Size");
+        notForInterfaceImports.add("javax.validation.constraints.NotNull");
+        notForInterfaceImports.add("javax.validation.constraints.NotEmpty");
+        notForInterfaceImports.add("javax.validation.constraints.Valid");
         notForInterfaceImports.add("org.hibernate.proxy.HibernateProxy");
         notForInterfaceImports.add("java.util.Map");
         notForInterfaceImports.add("java.util.Collections");
         notForInterfaceImports.add("java.util.WeakHashMap");
-        notForInterfaceImports.add("com.github.wwadge.hbnpojogen.persistence.validator.Mandatory");
+//        notForInterfaceImports.add("com.github.wwadge.hbnpojogen.persistence.validator.Mandatory");
 //        notForInterfaceImports.add("com.github.wwadge.hbnpojogen.persistence.IPojoGenEntity");
 
 

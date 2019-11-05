@@ -1250,7 +1250,7 @@ public class Clazz
             }
         }
         if (!e.isEmpty()) {
-            return ", exclude = {"+Joiner.on(",").join(e)+"}";
+            return "exclude = {"+Joiner.on(",").join(e)+"}";
         }
         return "";
     }
