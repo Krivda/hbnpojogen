@@ -5,12 +5,12 @@ package ${packagename};
 ###
 ## expand Sets using some type eg HashSet, ArrayList, etc
 #if ( $property.oneToMany)
-   #set ($fullType =  "Set<$property.JavaType>")
-   #set ($fullJDType = "Set&lt;$property.JavaType&gt;")
+   #set ($fullType =  "List<$property.JavaType>")
+   #set ($fullJDType = "List&lt;$property.JavaType&gt;")
 #else
 #if ( $property.manyToMany )
-	#set ($fullType =  "Set<$property.manyToManyLink.dstProperty.clazz.className>")
-	#set ($fullJDType =  "Set&lt;$property.manyToManyLink.dstProperty.clazz.className&gt;")
+	#set ($fullType =  "List<$property.manyToManyLink.dstProperty.clazz.className>")
+	#set ($fullJDType =  "List&lt;$property.manyToManyLink.dstProperty.clazz.className&gt;")
 #else
    #set ($fullType =  "$property.JavaType")
    #set ($fullJDType =  "$property.JavaType")
@@ -225,6 +225,10 @@ $classAnnotation
 import $import;
 #end
 import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 #set ($fullTypeOfId = "---")
 
@@ -272,10 +276,10 @@ $classCustomCodeFields
 #if ( $class.embeddable || $class.isCompositePrimaryKey() )
 #oneToManyAnnotation($property)
 #end
-	private Set<$property.JavaType> ${property.nicePropertyName} = new HashSet<>();
+	private List<$property.JavaType> ${property.nicePropertyName} = new ArrayList<>();
 #else
 #if ( $property.ManyToMany )
-	private Set<$property.manyToManyLink.dstProperty.clazz.className> ${property.nicePropertyName} = new HashSet<>();
+	private List<$property.manyToManyLink.dstProperty.clazz.className> ${property.nicePropertyName} = new ArrayList<>();
 #else
 #if	( $property.idField )
 #if ( $class.embeddable || $class.isCompositePrimaryKey() )

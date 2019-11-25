@@ -16,7 +16,7 @@
 	<!-- Username with access to view meta data -->
 	<databaseUsername>backend</databaseUsername>
 	<!-- Password for the given username -->
-	<databasePassword>ENTER PASSWORD HERE</databasePassword>
+	<databasePassword>back@pwd</databasePassword>
 	<!-- Target where source files are to be written (overwriting files on name conflicts!) -->
 	<sourceTarget>d:\Projects\GitHub\tests\sr2020</sourceTarget>
 	<!--  Specify the subfolder, relative to "sourceTarget", where support jars such as hibernate.jar are to
