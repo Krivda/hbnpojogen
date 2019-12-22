@@ -572,7 +572,7 @@ public class VelocityWriters {
             context.put("classCustomCode", clazz.getClassCustomCode());
             List<String> interfacesToShow = new LinkedList<String>();
             if (!clazz.isSubclass()) {
-                interfacesToShow.add("Cloneable");
+//                interfacesToShow.add("Cloneable");
                 interfacesToShow.add("Serializable");
             }
 //            if (!clazz.isEmbeddable() && !clazz.isSubclass()) {

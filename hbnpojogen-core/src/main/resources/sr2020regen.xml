@@ -16,7 +16,7 @@
 	<!-- Username with access to view meta data -->
 	<databaseUsername>backend</databaseUsername>
 	<!-- Password for the given username -->
-	<databasePassword>back@pwd</databasePassword>
+	<databasePassword></databasePassword>
 	<!-- Target where source files are to be written (overwriting files on name conflicts!) -->
 	<sourceTarget>d:\Projects\GitHub\tests\sr2020</sourceTarget>
 	<!--  Specify the subfolder, relative to "sourceTarget", where support jars such as hibernate.jar are to
@@ -515,6 +515,8 @@ table section
 		<nobacklink from="schemaA.*" to="schemaB.*" from-field="*" />
 		<nobacklink from="*.*" to="*.country" from-field="*" />
 		<nobacklink from="schemaA.sometable" to="schemaB.linkedtable" from-field="somefield" />
+		<nobacklink from="*.metatype" to="*.aspect_discount" from-field="*"/>
+		<nobacklink from="*.aspect" to="*.aspect_discount" from-field="*"/>
 	</disableBackLinks>
 
 	<!--  Use the disableForwardLinks section to specify that the generator
@@ -524,6 +526,8 @@ should not generate the OneToMany side  in the case of one-to-many/many-to-one l
 		<noforwardlink from="schemaA.*" to="schemaB.*" from-field="*" />
 		<noforwardlink from="*.*" to="*.country" from-field="*" />
 		<noforwardlink from="schemaA.sometable" to="schemaB.linkedtable" from-field="somefield" />
+		<noforwardlink from="*.metatype" to="*.aspect_discount" from-field="*"/>
+		<noforwardlink from="*.aspect" to="*.aspect_discount" from-field="*"/>
 	</disableForwardLinks>
 
 
